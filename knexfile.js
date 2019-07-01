@@ -9,7 +9,7 @@ module.exports = {
       filename: './database/data.sqlite3'
     },
     migrations: {
-      directory: './database'
+      directory: './database/migrations'
     }
   },
 
