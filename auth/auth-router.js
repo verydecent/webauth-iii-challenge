@@ -1,16 +1,17 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 
+const Database = require('../users/users-model');
+
 router.post('/register', (req, res) => {
-  const { username, password } = req.body;
+  let { username, password } = req.body;
 
   if (!username || !password) {
     res.status(400).json({ error: "You are missing either or both of the following fields: username, password" });
   }
   else {
-    const hashedPassword = bcrypt.hashSync(password, 14);
+    let hashedPassword = bcrypt.hashSync(password, 14);
     password = hashedPassword;
-    console.log(password);
 
     Database.add(req.body)
       .then(id => {
@@ -22,8 +23,8 @@ router.post('/register', (req, res) => {
   }
 });
 
-router.post('/login', (req, res) => {
+// router.post('/login', (req, res) => {
 
-});
+// });
 
 module.exports = router;
